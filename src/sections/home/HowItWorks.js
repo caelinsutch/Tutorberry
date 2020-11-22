@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
 import Slider from "react-slick";
 import { rgba } from "polished";
+import data from '../../data.json';
 
 import { Title, Section, Box, Text } from "../../components/Core";
 import { device, breakpoints } from "../../utils";
@@ -150,6 +151,8 @@ const SliderText = styled(Box)`
   }
 `;
 
+const { home: { how_it_works}} = data;
+
 const HowItWorks = () => {
   const slickSettings = {
     dots: false,
@@ -176,10 +179,9 @@ const HowItWorks = () => {
           <Row className="justify-content-center mb-4">
             <Col lg="10">
               <div className="text-center">
-                <Title>How it Works</Title>
+                <Title>{how_it_works.title}</Title>
                 <Text>
-                  How our volunteer based organization can provide{" "}
-                  <br className="d-none d-md-block" /> free tutoring to students.
+                  {how_it_works.subtitle}
                 </Text>
               </div>
             </Col>
@@ -187,69 +189,28 @@ const HowItWorks = () => {
           <Row className="justify-content-center">
             <Col lg="12">
               <SliderStyled {...slickSettings}>
-                <SliderItem>
-                  <SliderCard>
-                    <NumberBlock>
-                      <span>1</span>
-                    </NumberBlock>
-                    <SliderText>
-                      <Text variant="small" color="secondary">
-                        STEP 01
-                      </Text>
-                      <Title variant="card" fontSize="24px" mb={4} mt={2}>
-                        Sign Up to get Matched
-                      </Title>
-                      <Text color="dark">
-                        Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites.
-                        Lorem Ipsum best not make any more threats to your website.
-                        It will be met with fire and fury like the world has never seen.
-                        Does everybody know that pig named Lorem Ipsum?
-                      </Text>
-                    </SliderText>
-                  </SliderCard>
-                </SliderItem>
-                <SliderItem>
-                  <SliderCard>
-                    <NumberBlock>
-                      <span>2</span>
-                    </NumberBlock>
-                    <SliderText>
-                      <Text variant="small" color="secondary">
-                        STEP 02
-                      </Text>
-                      <Title variant="card" fontSize="24px" mb={4} mt={2}>
-                        The Tutor Contacts you about Subjects.
-                      </Title>
-                      <Text color="dark">
-                        Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites.
-                        Lorem Ipsum best not make any more threats to your website.
-                        It will be met with fire and fury like the world has never seen.
-                        Does everybody know that pig named Lorem Ipsum?
-                      </Text>
-                    </SliderText>
-                  </SliderCard>
-                </SliderItem>
-                <SliderItem>
-                  <SliderCard>
-                    <NumberBlock>
-                      <span>3</span>
-                    </NumberBlock>
-                    <SliderText>
-                      <Text variant="small" color="secondary">
-                        STEP 02
-                      </Text>
-                      <Title variant="card" fontSize="24px" mb={4} mt={2}>
-                        We get your first session registered!
-                      </Title>
-                      <Text color="dark">
-                        Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites.
-                        Lorem Ipsum best not make any more threats to your website.
-                        It will be met with fire and fury like the world has never seen.
-                        Does everybody know that pig named Lorem Ipsum?
-                      </Text>
-                    </SliderText>
-                  </SliderCard>
-                </SliderItem>
+                {
+                  how_it_works.steps.map((step, i) => (
+                    <SliderItem>
+                      <SliderCard>
+                        <NumberBlock>
+                          <span>{i + 1}</span>
+                        </NumberBlock>
+                        <SliderText>
+                          <Text variant="small" color="secondary">
+                            {step.title}
+                          </Text>
+                          <Title variant="card" fontSize="24px" mb={4} mt={2}>
+                            {step.subtitle}
+                          </Title>
+                          <Text color="dark">
+                            {step.description}
+                          </Text>
+                        </SliderText>
+                      </SliderCard>
+                    </SliderItem>
+                  ))
+                }
               </SliderStyled>
             </Col>
           </Row>

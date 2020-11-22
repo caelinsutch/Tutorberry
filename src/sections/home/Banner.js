@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { rgba } from "polished";
 import { Container, Row, Col } from "react-bootstrap";
+import data from '../../data.json';
 
-import { Title, Button, Section, Box, Text, Span } from "../../components/Core";
+import { Title, Button, Section, Box} from "../../components/Core";
 
 import { device } from "../../utils";
 
@@ -66,6 +67,7 @@ const ULStyled = styled.ul`
     }
   }
 `;
+const { home: { banner }} = data;
 
 const Banner = () => {
   return (
@@ -97,18 +99,17 @@ const Banner = () => {
               >
                 <Box pt={[4, null, null, 0]} pl={5}>
                   <Title>
-                    Free Online Tutoring <br className="d-none d-sm-block" />
-                    for K-12 Students.
+                    {banner.title}
                   </Title>
                   <Box mb={3}>
                     <ULStyled>
-                      <li>Fully Virtual</li>
-                      <li>100% Free</li>
-                      <li>Variety of Subjects</li>
+                      {
+                        banner.features.map(feature => <li>{feature}</li>)
+                      }
                     </ULStyled>
                   </Box>
                   <div className="d-flex flex-column align-items-start pt-2">
-                    <Button mb={2}>Register for FREE Tutoring</Button>
+                    <Button mb={2}>{banner.button}</Button>
                   </div>
                 </Box>
               </div>
